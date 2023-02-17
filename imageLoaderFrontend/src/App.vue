@@ -1,52 +1,78 @@
 <script>
+import http from "./http-common";
+
 export default {
+  name:"App",
   data: () => ({
-    chosenFileName: null
+    chosenFileName: null,
+    return: {
+      postResult: null,
+    }
   }),
   methods: {
     fileChosen: function() {
-      console.log('按钮选择文件');
       this.chosenFileName = document.getElementById('uploadImage').files[0].name
     },
     dropHandler: function(ev) {
-    console.log(ev);
-    console.log("hello drop");
-    console.log('File(s) dropped');
 
     // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-
-    if (ev.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[i].kind === 'file') {
-          var file = ev.dataTransfer.items[i].getAsFile();
-          this.chosenFileName = file.name;
-          console.log('... file[' + i + '].name = ' + file.name);
-        }
-      }
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-        console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-      }
-    }
-  },
+    // ev.preventDefault();
+    // let file = null;
+    // if (ev.dataTransfer.items) {
+    //   // Use DataTransferItemList interface to access the file(s)
+    //   for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+    //     // If dropped items aren't files, reject them
+    //     if (ev.dataTransfer.items[i].kind === 'file') {
+    //       file = ev.dataTransfer.items[i].getAsFile();
+    //       this.chosenFileName = file.name;
+    //     }
+    //   }   
+    // }
+    //  else {
+    //   // Use DataTransfer interface to access the file(s)
+    //   for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+    //     console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+    //   }
+    // }
+    },
     dragOverHandler: function(ev) {
-      console.log("hello dragover");
-      console.log('File(s) in drop zone');
-
       // Prevent default behavior (Prevent file from being opened)
       ev.preventDefault();
+    },
+    fortmatResponse(res) {
+      return JSON.stringify(res, null, 2);
+    },
+    async postData(ev) {
+        ev.preventDefault();
+        let file = document.getElementById('uploadImage').files[0];
+
+        let formData = new FormData()
+        formData.append('file', file)
+
+
+        try {
+        console.log("start post");
+        const res = await http.post("/upload", formData, {
+          headers: {
+            "x-access-token": "token-value",
+          },
+        });
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: res.headers,
+          data: res.data,
+        };
+        console.log(result);
+        this.postResult = this.fortmatResponse(result);
+        console.log("get response");
+        console.log(postResult);
+      } catch (err) {
+        this.postResult = this.fortmatResponse(err.response?.data) || err;
+      }
     }
-  }
+    }
 }
-// import HelloWorld from './components/HelloWorld.vue'
-// import TheWelcome from './components/TheWelcome.vue'
-// let image = document.getElementById('uploadImage');
-// console.log(image); 
-// console.log(image.value);
+
 
   
 
@@ -59,7 +85,7 @@ export default {
       <p class="limit">File should be Jpeg, Png,...</p>
       <p class="chosenFile">{{chosenFileName}}</p>
     </div>
-    <div class="dragdroparea" id="droparea" @drop="dropHandler" @dragover="dragOverHandler">
+    <div class="dragdroparea" id="droparea" @drop="postData" @dragover="dragOverHandler">
       <img src="./images/loaderimage.png" class="fakeImage">
       <span class="dragDis">Drag & Drop your image here</span>
     </div>
@@ -71,7 +97,7 @@ export default {
         <!-- <input type="file" class="form-control" id="input-image" name="input-image" accept="image/*"> -->
         <div class="buttonarea">
           <span class="buttonName">Choose a file</span>  
-          <input type="file" id="uploadImage" class="chafi" accept="image/*" @change="fileChosen">  
+          <input type="file" id="uploadImage" class="chafi" accept="image/*" @change="postData">  
         </div>
       </div>
     </div>

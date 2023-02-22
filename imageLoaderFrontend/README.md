@@ -1,42 +1,88 @@
-# imageLoaderFrontend
-## project Progress（Three steps）
-* UI and function of Uploader
 
-UI is done, function includes two parts:
-1. drag and drop
-2. 点击上传本地文件
+<h1 align="center">ImageUploader</h1>
 
-## Drag and drop 页面两个功能的实现方法
+<div align="center">
+   A simple but useful tool to upload images.
+</div>
 
-1. 将文件拖拽到浏览器并传输过程：
-https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+<div align="center">
+  <h3>
+    <a href="https://{your-demo-link.your-domain}">
+      Demo
+    </a>
+    <span> | </span>
+    <a href="https://{your-url-to-the-solution}">
+      Solution
+    </a>
+    <span> | </span>
+    <a href="https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx">
+      Challenge
+    </a>
+  </h3>
+</div>
 
-2. 点击按钮打开本地文件夹，并上传文件的方法？ 如何控制上传文件的类型，如何获取上传文件的进度？
-实现方法：
-http://doc.ruoyi.vip/ruoyi-vue/document/htsc.html#%E4%B8%8A%E4%BC%A0%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B
+<!-- TABLE OF CONTENTS -->
 
-## Recommended IDE Setup
+## Table of Contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [Overview](#overview)
+  - [Built With](#built-with)
+- [Features](#features)
+- [How to use](#how-to-use)
+- [Contact](#contact)
 
-## Customize configuration
+<!-- OVERVIEW -->
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Overview
+select an image
+![screenshot](./src/images/overview1.png)
+uploading
+![screenshot](./src/images/overview3.png)
+uploaded successfully
+![screenshot](./src/images/overview2.png)
 
-## Project Setup
+What you can do with this project?
+* you can drag and drop an image to upload it
+* you can choose to select an image from your folder
+* you can see a loader when uploading
+* When the image is uploaded, you can see the image and copy its url
+* you can choose to copy the url to the clipboard
 
-```sh
-npm install
+
+### Built With
+
+<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
+
+- [Vue.js](https://vuejs.org/)
+- [Java](https://tailwindcss.com/)
+- [SpringBoot](https://tailwindcss.com/)
+
+## Features
+
+<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+
+
+
+## How To Use
+
+<!-- Example: -->
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/your-user-name/your-project-name
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
 ```
 
-### Compile and Hot-Reload for Development
+## Contact
 
-```sh
-npm run dev
-```
+- Website [your-website.com](https://{your-web-site-link})
+- GitHub [mvpsheng](https://{github.com/your-usermame})
 
-### Compile and Minify for Production
 
-```sh
-npm run build
-```

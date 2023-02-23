@@ -54,8 +54,8 @@ What you can do with this project?
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [Vue.js](https://vuejs.org/)
-- [Java](https://tailwindcss.com/)
-- [SpringBoot](https://tailwindcss.com/)
+- [Java](https://www.java.com/zh-CN/)
+- [SpringBoot](https://spring.io/projects/spring-boot/)
 
 ## Features
 

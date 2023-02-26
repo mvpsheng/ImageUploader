@@ -44,6 +44,7 @@ export default {
 </script>
 
 <template>
+  <img src="http://localhost:8080/uploads/%E8%AE%BE%E7%BD%AE.jpeg" alt="">
   <div v-if="uploadState === 'choosingImage'">
     <ImageUpload @startloading="changeState" @urlreceived="changeUrl"/>
   </div>
